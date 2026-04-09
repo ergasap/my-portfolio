@@ -1,0 +1,166 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import Container from "@components/Container.astro";
+import { ABOUT } from "@consts"; // Asegúrate de definir ABOUT en consts.ts o usa texto directo
+---
+
+<PageLayout title="Sobre mí" description="Un poco más sobre quién soy">
+  <Container>
+    <h4 class="animate text-xl font-semibold text-black dark:text-white mb-6">
+      About me
+    </h4>
+    <div class="space-y-16">
+      <!-- Experience -->
+      <section>
+        <h5 class="animate font-semibold text-black dark:text-white">
+          Experience
+        </h5>
+        <article class="space-y-6">
+          <div class="animate">
+            <div class="text-sm opacity-75 italic">
+              January 2025 – Present
+            </div>
+            <div class="font-semibold text-black dark:text-white">
+              DevOps Engineer — Kumori Systems
+            </div>
+          
+            <article class="mt-2 space-y-3">
+              <p>
+                Spearheading the modernization of cloud infrastructure by architecting and implementing robust Infrastructure as Code (IaC) solutions using Terraform.
+              </p>
+              <p>
+                Designing modular and reusable Terraform blueprints to automate the provisioning of complex cloud environments, significantly reducing deployment times and eliminating manual configuration drift.
+              </p>
+              <p>
+                Managing the lifecycle and maintenance of multiple Kubernetes clusters, ensuring high availability and orchestrating critical operations such as cluster-wide certificate renewals.
+              </p>
+            </article>
+          </div>
+
+          <div class="animate">
+            <div class="text-sm opacity-75 italic">
+              December 2023 – December 2024
+            </div>
+            <div class="font-semibold text-black dark:text-white">
+              DevOps Engineer — Instituto de Instrumentación para Imagen Molecular (i3m)
+            </div>
+          
+            <article class="mt-2 space-y-3">
+              <p>
+                Worked within the Grid and High Performance Computing group, contributing to a European research project.
+              </p>
+              <p>
+                Designed and deployed an end-to-end cloud computing infrastructure on-premises using Kubernetes, managing the platform lifecycle and maintenance.
+              </p>
+              <p>
+                Managed infrastructure microservices using native Kubernetes resources, Helm and Custom Resource Definitions (CRDs), and deployed services such as Jenkins, Keycloak, MinIO, Prometheus, Grafana and MongoDB/MySQL operators.
+              </p>
+              <p>
+                Developed CI/CD pipelines in Jenkins to ensure reproducibility of code hosted on GitHub, and implemented event-driven solutions using Azure Functions to improve scalability.
+              </p>
+              <p>
+                Applied RBAC security policies and integrated Keycloak for user management and access control across the platform.
+              </p>
+            </article>
+          </div>
+
+          <div class="animate">
+            <div class="text-sm opacity-75 italic">
+              December 2022 – July 2023
+            </div>
+            <div class="font-semibold text-black dark:text-white">
+              DevOps Engineer — Instituto de Automática e Informática Industrial (ai2)
+            </div>
+          
+            <article class="mt-2 space-y-3">
+              <p>
+                Worked on DevOps and Systems Administration tasks, focusing on containerization, deployment and monitoring of distributed systems.
+              </p>
+              <p>
+                Deployed and managed microservices on Kubernetes using Deployments, Services and Ingress, including robotics simulations and web hosting environments.
+              </p>
+              <p>
+                Set up and configured a Jenkins instance, and developed CI/CD pipelines to automate image building and deployment based on Git commits.
+              </p>
+              <p>
+                Implemented monitoring solutions using Prometheus and Grafana, building dashboards to visualize CPU, memory and GPU usage across cluster nodes.
+              </p>
+              <p>
+                Developed my Master's thesis focused on designing a unified authentication and authorization system for Kubernetes clusters in research environments.
+              </p>
+              <p>
+                Built a Single Sign-On (SSO) solution integrating university credentials, enabling authentication at both microservices and Kubernetes CLI levels using Keycloak and OAuth2 Proxy, and managing access through RBAC policies.
+              </p>
+            </article>
+          </div>
+        </article>
+      </section>
+      <!-- Education -->
+      <section>
+        <h5 class="animate font-semibold text-black dark:text-white">
+          Education
+        </h5>
+      
+        <article class="space-y-6 mt-4">
+      
+          <div class="animate">
+            <div class="text-sm opacity-75 italic">
+              2022 – 2023
+            </div>
+            <div class="font-semibold text-black dark:text-white">
+              Master’s Degree in Cloud Computing and High Performance Computing — Universitat Politècnica de València
+            </div>
+      
+            <article class="mt-2 space-y-3">
+              <p>
+                Completed a Master's program focused on cloud computing and high-performance systems, working on multiple academic projects involving modern cloud-native technologies.
+              </p>
+              <p>
+                Gained hands-on experience with core cloud technologies such as Docker, Kubernetes and Ansible, as well as public cloud platforms including AWS and Azure.
+              </p>
+              <p>
+                Worked with parallel programming models such as MPI and OpenMP, and GPU acceleration technologies including CUDA and OpenCL.
+              </p>
+              <p>
+                Studied Big Data processing techniques and tools, including MapReduce with Apache Hadoop and distributed data processing with Apache Spark.
+              </p>
+              <p>
+                Technologies: Docker, Kubernetes, Ansible, MPI, OpenMP, Shell, CUDA, OpenCL, Apache Hadoop, Apache Spark, Kafka, ZeroMQ
+              </p>
+            </article>
+          </div>
+      
+          <div class="animate">
+            <div class="text-sm opacity-75 italic">
+              2018 – 2022
+            </div>
+            <div class="font-semibold text-black dark:text-white">
+              Bachelor’s Degree in Computer Engineering — Universitat Politècnica de València
+            </div>
+      
+            <article class="mt-2 space-y-3">
+              <p>
+                Completed a Bachelor's degree in Computer Engineering, building a solid foundation in software development, systems and computer science fundamentals.
+              </p>
+              <p>
+                Technologies: Java, C#, C++, HTML, CSS, JavaScript
+              </p>
+            </article>
+          </div>
+      
+        </article>
+      </section>
+      <!-- Certifications -->
+      <section>
+        <h5 class="animate font-semibold text-black dark:text-white">
+          Certifications
+        </h5>
+        <ul class="list-disc list-inside space-y-1 animate">
+          <li>Certified Kubernetes Administrator (CKA)</li>
+          <li>Terraform Associate 004</li>
+          <li>C1 Advanced Cambridge</li>
+        </ul>
+      </section>
+    </div>
+  </Container>
+</PageLayout>

@@ -20,3 +20,10 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+
+node_modules/
+dist/
+.astro/
+.vercel/
+.env
