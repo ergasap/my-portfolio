@@ -1,36 +1,51 @@
 ---
 title: "Architecting a Production-Ready Infrastructure [Part 1]"
-description: "Integrating AWS, Terraform, and Kubernetes - Introduction"
+description: "Project Introduction"
 date: "2026-04-08"
 ---
 
-# Why this project?
+## Table of Contents
+1. [Introduction](#1-introduction)
+2. [Project Goals](#2-project-goals)
+3. [Tech Stack](#3-tech-stack)
+4. [Architecture Overview](#4-architecture-overview)
 
-In the DevOps world, there's a huge gap between a "Hello World" tutorial and a production-grade environment. Most online guides show you how to spin up a resource in 5 minutes, but they often skip the hard parts: **security, scalability, state management, and observability.**
+---
 
-I decided to start this series to document my journey building a robust, enterprise-level infrastructure on AWS. This isn't just about making things work; it's about making them work **the right way**.
+## 1. Introduction
+In this project, I aim to design and build a production-like DevOps platform using Amazon Web Services, Terraform and Kubernetes.
 
-## The Core Principles
+The goal is to simulate a real-world environment where infrastructure, deployment and operations are fully automated and follow modern DevOps practices.
 
-For this project, I've set a few "non-negotiable" rules:
-* **Infrastructure as Code (IaC):** If it's not in Terraform, it doesn't exist. No manual clicks in the AWS Console.
-* **Security First:** Private networking, least-privilege IAM roles, and encrypted secrets.
-* **GitOps Workflow:** Every change must be driven by a Git commit.
-* **Cost Efficiency:** Using modern patterns like Spot Instances to keep the cloud bill under control.
+Rather than focusing on building a complex application, this project focuses on infrastructure design, automation and system reliability.
 
-## The Roadmap
+## 2. Project Goals
+The main objectives of this project are:
 
-This series will be divided into several parts, taking us from a blank AWS account to a fully automated cluster:
+- Design a scalable and modular cloud infrastructure
+- Manage infrastructure using Infrastructure as Code with Terraform
+- Deploy and orchestrate workloads using Kubernetes
+- Implement a CI/CD pipeline for automated deployments
+- Add basic observability and monitoring
+- Learn!
 
-1.  **The Foundation:** VPC design and Terraform remote state.
-2.  **The Heart:** Deploying a managed EKS cluster with Terraform.
-3.  **Traffic Control:** Ingress controllers, ExternalDNS, and SSL certificates.
-4.  **Automation:** CI/CD pipelines with GitHub Actions and GitOps with ArgoCD.
-5.  **Observability:** Monitoring the stack with Prometheus and Grafana.
-6.  **Hardening:** Final security tweaks and cost optimization.
+The idea is to replicate how a real DevOps environment would be structured in a production scenario.
 
-## What's next?
+## 3. Tech Stack
+The project is built using the following technologies:
 
-In the next post, we will start with the **Part 1: The Foundation**. We'll dive into the networking layer, creating a secure VPC and setting up our Terraform backend to ensure our infrastructure state is safe and collaborative.
+- Cloud provider: Amazon Web Services
+- Infrastructure as Code: Terraform
+- Container orchestration: Kubernetes
+- CI/CD: GitHub Actions
+- Monitoring: Prometheus and Grafana
 
-Stay tuned!
+These tools were chosen because they represent a common and modern DevOps stack used in real-world systems.
+
+## 4. Architecture Overview
+The architecture is designed to follow best practices in terms of scalability, security and maintainability.
+A custom VPC is created in AWS, containing both public and private subnets.
+Kubernetes is used as the orchestration layer, where the application is deployed and exposed through an ingress controller.
+Terraform is used to provision and manage all infrastructure components, ensuring consistency across environments.
+CI/CD pipelines automate the build and deployment process, allowing changes to be delivered quickly and reliably.
+
