@@ -43,9 +43,12 @@ The project is built using the following technologies:
 These tools were chosen because they represent a common and modern DevOps stack used in real-world systems.
 
 ## 4. Architecture Overview
-The architecture is designed to follow best practices in terms of scalability, security and maintainability.
-A custom VPC is created in AWS, containing both public and private subnets.
-Kubernetes is used as the orchestration layer, where the application is deployed and exposed through an ingress controller.
-Terraform is used to provision and manage all infrastructure components, ensuring consistency across environments.
-CI/CD pipelines automate the build and deployment process, allowing changes to be delivered quickly and reliably.
+This architecture separates infrastructure provisioning from application delivery using independent workflows.
 
+Infrastructure is managed declaratively with Terraform and deployed via Terraform Cloud on AWS (EKS).
+
+Application changes trigger CI/CD pipelines in GitHub Actions, building and pushing images to Amazon ECR.
+
+Kubernetes continuously pulls and deploys updated images, ensuring a scalable and automated system.
+
+![Project Architecture](/01-devops-project-part-1/architecture.png)
