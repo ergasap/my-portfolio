@@ -10,7 +10,6 @@ date: "Apr 09 2026"
 3. [Setting up the EKS architecture](#3-setting-up-the-eks-architecture)
 - 3.1. [Cloud configuration in Terraform](#31-cloud-configuration-in-terraform)
 - 3.2. [EKS Terraform configuration](#32-eks-terraform-configuration)
-- 3.3. [Install AWS Cli and connect to cluster](#33-install-aws-cli-and-connect-to-cluster)
 
 ---
 
@@ -22,6 +21,10 @@ First, we must have an account in the following services:
 - GitHub
 - AWS
 - Terraform Cloud
+
+And you must install the following clis:
+- [AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- [Terraform cli](https://developer.hashicorp.com/terraform/install)
 
 Once thats donde we can start writing code.
 
@@ -162,16 +165,75 @@ module "eks" {
 }
 ```
 
-Basically, we will be deploying an EKS cluster inside a VPC. The VPC containing 2 AZs, 2 private subnets and 2 public subnets. 
+Terraform will deploy a VPC with 2 AZs, both AZs having a public and private subnet. A node group with one node on the private subnet. A NAT Gateway for the workers to have internet connection through an Internet Gateway.
 
-### 3.3. Install AWS Cli and connect to cluster
+The architecture should look something like this:
+
+![AWS Architecture](/02-devops-project-part-2/aws-architecture.png)
+
+
+**BEFORE THE APPLY** we must set our credentials to access correctly the EKS cluster. For this we must update out eks module with this new block of code: 
 
 ```
-brew install awscli
-aws --version
+// main.tf
 
+...
+
+# EKS Cluster
+module "eks" {
+  source  = "terraform-aws-modules/eks/aws"
+  version = "~> 20.8"
+
+  cluster_name    = "ergasap-eks"
+  cluster_version = "1.29"
+
+  subnet_ids = module.vpc.private_subnets
+  vpc_id     = module.vpc.vpc_id
+
+  cluster_endpoint_public_access = true
+  enable_cluster_creator_admin_permissions = true
+  authentication_mode = "API_AND_CONFIG_MAP"
+
+  access_entries = {
+    ergasap_macbook = {
+      principal_arn     = "YOUR_ARN" 
+      policy_associations = {
+        admin = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            type = "cluster"
+          }
+        }
+      }
+    }
+  }
+
+  eks_managed_node_groups = {
+    default = {
+      ami_type       = "AL2_x86_64"
+      instance_types = ["t3.small", "t3a.small"]
+      min_size       = 1
+      max_size       = 2
+      desired_size   = 1
+      capacity_type = "SPOT"
+    }
+  }
+
+  tags = {
+    Environment = "dev"
+  }
+}
+```
+
+A new "access_entries" must be created and filled with your corresponding ARN. To retrieve you ARN chain you must use this command:
+
+```
 aws eks update-kubeconfig --region eu-central-1 --name ergasap-eks
-## Add and modify code to terraform pasting your own arn
 aws sts get-caller-identity
-
 ```
+
+You can now apply your newly infra configuration with terraform. After the run has finished, you access your cluster with "kubectl"
+
+![kubectl-get-all](/02-devops-project-part-2/kubectl-get-all.png)
+
+Finally, we have deployed a Kubernetes cluster using EKS AWS service via Terraform Cloud using a VCS workflow!
