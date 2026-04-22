@@ -33,9 +33,11 @@ They help detect failures early, identify performance bottlenecks, and reduce tr
 
 In cloud and Kubernetes environments, they are key to maintaining reliability, improving availability, and making informed operational decisions.
 
-### 2.1. Prometheus
+### 2.1. Prometheus and Grafana
 
+To install this 2 observability tools we will update our terraform script with this new piece of code. Here we are installing both instances using Helm.
 
+**NOTE**: Is important to know that it is posible that our eks instance node group is too small to handle new apps, so it is important to scale our cluster up.
 
 ```
 # --- Monitoring: Prometheus + Grafana en EKS ---
@@ -109,4 +111,5 @@ resource "helm_release" "kube_prometheus_stack" {
 }
 ```
 
-### 2.2. Grafana
+After deploying we should have our pods looking like this:
+
